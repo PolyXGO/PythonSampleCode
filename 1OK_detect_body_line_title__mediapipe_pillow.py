@@ -8,7 +8,7 @@ from PyQt5.QtWidgets import QApplication, QLabel, QPushButton, QVBoxLayout, QWid
 from PyQt5.QtGui import QImage, QPixmap, QPainter
 from PyQt5.QtCore import QTimer, Qt, QSize
 
-# Khởi tạo các module MediaPipe cho bàn tay, lưới mặt và tư thế
+# Khởi tạo các module MediaPipe cho bàn tay, lưới mặt và tư thế.
 mp_hands = mp.solutions.hands
 hands = mp_hands.Hands(min_detection_confidence=0.7, min_tracking_confidence=0.7)
 mp_drawing = mp.solutions.drawing_utils
