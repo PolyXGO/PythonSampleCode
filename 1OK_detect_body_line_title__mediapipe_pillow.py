@@ -1,4 +1,4 @@
-# Detect các bộ phận trên cơ thể.
+# Detect các bộ phận trên cơ thể và thông tin liên quan.
 
 import cv2
 import mediapipe as mp

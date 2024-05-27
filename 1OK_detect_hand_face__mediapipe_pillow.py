@@ -1,4 +1,4 @@
-# Detect ngón tay, khuôn mặt và thông tin các object trên mặt.
+# Detect ngón tay, focus vào bản mặt :))))
 
 import cv2
 import mediapipe as mp
