@@ -1,6 +1,7 @@
 ## Ghi chú
 
 Code detect chỉ mang mục đích học tập, tham khảo nhé! Code hay hay mình sẽ cập nhật dần dần và chia theo từng tập tin độc lập.
+Phần tính năng từng file code ghi chú ở đầu mỗi tập tin.
 
 ## Thư viện UI Python
 
