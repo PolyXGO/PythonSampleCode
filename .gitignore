@@ -1,3 +1,12 @@
+# Ignore folder
+*/
+
+# Ignore file
+/*
+
+# !ignore file name `1OK...`
+!/*1OK*
+
 .DS_Store
 /.vs
 /build
@@ -10,6 +19,3 @@
 /myenv
 /venv
 /temporary
-/*
-!/*1OK*
-!/*/
