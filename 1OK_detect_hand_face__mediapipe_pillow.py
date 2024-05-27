@@ -1,4 +1,4 @@
-# Mã hoàn thiện detect ngón tay, khuôn mặt và focus khuôn mặt.
+# Detect ngón tay, khuôn mặt và thông tin các object trên mặt.
 
 import cv2
 import mediapipe as mp
