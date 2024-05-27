@@ -11,10 +11,6 @@ CustomTkinter: Hiện đại hơn so với Tkinter thông thường.
 Lỗi hiển thị font unicode trên OpenCV chuyển sử dụng thư viện Pillow.
 `pip install mediapipe opencv-python pillow`
 
-######################### YOLO #########################
-# Yolo version 4 và 7 là bản phát triển ban đầu. Các phiên bản của ultra là khác.
-# Hiện tại bản 4 và 7 nhẹ và ổn định để tracking thông thường.
-
 ######################### WinOS #########################
 1. Cài đặt python. Thiết lập biến môi trường đến thư mục cài đặt Python và Python\Scripts
 2. Cài đặt pip nếu chưa:
