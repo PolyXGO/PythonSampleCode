@@ -46,15 +46,18 @@ def draw_volume_bar(image, volume):
 
 class VideoThread(QThread):
     change_pixmap_signal = pyqtSignal(np.ndarray)
+    finished_signal = pyqtSignal()
 
     def __init__(self):
         super().__init__()
-        self._run_flag = True
-        self.cap = cv2.VideoCapture(0)
+        self._run_flag = False
+        self.cap = None
         self.mp_hands = mp.solutions.hands
         self.hands = self.mp_hands.Hands(min_detection_confidence=0.7, min_tracking_confidence=0.5)
 
     def run(self):
+        self.cap = cv2.VideoCapture(0)
+        self._run_flag = True
         while self._run_flag:
             ret, frame = self.cap.read()
             if ret:
@@ -66,39 +69,41 @@ class VideoThread(QThread):
                 image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
                 
                 if results.multi_hand_landmarks:
-                    for hand_landmarks in results.multi_hand_landmarks:
-                        mp.solutions.drawing_utils.draw_landmarks(
-                            image, hand_landmarks, self.mp_hands.HAND_CONNECTIONS)
-                        
-                        # Đánh dấu đầu ngón tay cái và trỏ bằng chấm đỏ
-                        thumb_tip = hand_landmarks.landmark[self.mp_hands.HandLandmark.THUMB_TIP]
-                        index_finger_tip = hand_landmarks.landmark[self.mp_hands.HandLandmark.INDEX_FINGER_TIP]
-                        h, w, _ = image.shape
-                        thumb_tip_coords = (int(thumb_tip.x * w), int(thumb_tip.y * h))
-                        index_finger_tip_coords = (int(index_finger_tip.x * w), int(index_finger_tip.y * h))
+                    # Chỉ xử lý bàn tay đầu tiên được phát hiện
+                    hand_landmarks = results.multi_hand_landmarks[0]
+                    mp.solutions.drawing_utils.draw_landmarks(
+                        image, hand_landmarks, self.mp_hands.HAND_CONNECTIONS)
+                    
+                    # Đánh dấu đầu ngón tay cái và trỏ bằng chấm đỏ
+                    thumb_tip = hand_landmarks.landmark[self.mp_hands.HandLandmark.THUMB_TIP]
+                    index_finger_tip = hand_landmarks.landmark[self.mp_hands.HandLandmark.INDEX_FINGER_TIP]
+                    h, w, _ = image.shape
+                    thumb_tip_coords = (int(thumb_tip.x * w), int(thumb_tip.y * h))
+                    index_finger_tip_coords = (int(index_finger_tip.x * w), int(index_finger_tip.y * h))
 
-                        cv2.circle(image, thumb_tip_coords, 10, (0, 0, 255), -1)
-                        cv2.circle(image, index_finger_tip_coords, 10, (0, 0, 255), -1)
+                    cv2.circle(image, thumb_tip_coords, 10, (0, 0, 255), -1)
+                    cv2.circle(image, index_finger_tip_coords, 10, (0, 0, 255), -1)
 
-                        # Vẽ đường kết nối màu xanh giữa hai đầu ngón tay
-                        cv2.line(image, thumb_tip_coords, index_finger_tip_coords, (0, 255, 0), 5)
+                    # Vẽ đường kết nối màu xanh giữa hai đầu ngón tay
+                    cv2.line(image, thumb_tip_coords, index_finger_tip_coords, (0, 255, 0), 5)
 
-                        # Tính khoảng cách giữa đầu ngón tay cái và trỏ
-                        distance = hypot(index_finger_tip_coords[0] - thumb_tip_coords[0],
-                                         index_finger_tip_coords[1] - thumb_tip_coords[1])
-                        
-                        # Điều chỉnh âm lượng dựa trên khoảng cách
-                        volume_level = np.interp(distance, [30, 300], [0, 100])
-                        set_volume_mac(volume_level)
-                        
-                        # Vẽ cột màu và nhãn âm lượng
-                        draw_volume_bar(image, volume_level)
+                    # Tính khoảng cách giữa đầu ngón tay cái và trỏ
+                    distance = hypot(index_finger_tip_coords[0] - thumb_tip_coords[0],
+                                     index_finger_tip_coords[1] - thumb_tip_coords[1])
+                    
+                    # Điều chỉnh âm lượng dựa trên khoảng cách
+                    volume_level = np.interp(distance, [30, 300], [0, 100])
+                    set_volume_mac(volume_level)
+                    
+                    # Vẽ cột màu và nhãn âm lượng
+                    draw_volume_bar(image, volume_level)
 
                 self.change_pixmap_signal.emit(image)
+        self.cap.release()
+        self.finished_signal.emit()
 
     def stop(self):
         self._run_flag = False
-        self.cap.release()
         self.quit()
         self.wait()
 
@@ -136,12 +141,21 @@ class App(QMainWindow):
         # Tạo luồng video capture
         self.thread = VideoThread()
         self.thread.change_pixmap_signal.connect(self.update_image)
+        self.thread.finished_signal.connect(self.on_thread_finished)
 
     def start_video(self):
-        self.thread.start()
+        if not self.thread.isRunning():
+            self.start_button.setEnabled(False)
+            self.stop_button.setEnabled(True)
+            self.thread.start()
 
     def stop_video(self):
-        self.thread.stop()
+        if self.thread.isRunning():
+            self.stop_button.setEnabled(False)
+            self.thread.stop()
+
+    def on_thread_finished(self):
+        self.start_button.setEnabled(True)
 
     def closeEvent(self, event):
         self.thread.stop()
