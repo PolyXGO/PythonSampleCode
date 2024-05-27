@@ -11,6 +11,9 @@ CustomTkinter: Hiện đại hơn so với Tkinter thông thường.
 Lỗi hiển thị font unicode trên OpenCV chuyển sử dụng thư viện Pillow.
 `pip install mediapipe opencv-python pillow`
 
+Lỗi No module named 'PyQt5' bạn cần cài đặt PyQt5.
+`pip install PyQt5 qdarkstyle`
+
 ######################### WinOS #########################
 1. Cài đặt python. Thiết lập biến môi trường đến thư mục cài đặt Python và Python\Scripts
 2. Cài đặt pip nếu chưa:
