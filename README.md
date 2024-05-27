@@ -1,6 +1,6 @@
 ## Ghi chú
 
-Code detect chỉ mang mục đích học tập, tham khảo nhé!
+Code detect chỉ mang mục đích học tập, tham khảo nhé! Code hay hay mình sẽ cập nhật dần dần và chia theo từng tập tin độc lập.
 
 ## Thư viện UI Python
 
