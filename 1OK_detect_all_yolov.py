@@ -1,3 +1,5 @@
+# Detect đối tượng sử dụng Yolov4.
+
 import sys
 import os
 import cv2
