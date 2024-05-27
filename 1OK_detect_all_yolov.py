@@ -1,4 +1,4 @@
-# Detect đối tượng sử dụng Yolov4.
+# Detect đối tượng sử dụng Yolov4. Để sử dụng v7 thay đổi trong phần khai YOLO Model từ `yolov4` sang `yolov7`. Model mình tải sẵn trong thư mục /models rồi. Mọi người train hay tải model khác thì có thể bỏ vào đây dùng.
 
 import sys
 import os
@@ -10,10 +10,12 @@ from PyQt5.QtGui import QImage, QPixmap, QPainter
 from PIL import Image, ImageDraw, ImageFont
 
 # Đường dẫn tới tệp cấu hình và trọng số của YOLOv4-tiny. Detect đơn giản và cần nhẹ mọi người cần nhắc dùng v4 này nhé!
+# YOLO Model
 dest_dir = './models/yolov4-tiny/'
 cfg_path = os.path.join(dest_dir, 'yolov4-tiny.cfg')
 weights_path = os.path.join(dest_dir, 'yolov4-tiny.weights')
 names_path = os.path.join(dest_dir, 'coco.names')
+# YOLO Model
 
 # Tải các lớp từ tệp coco.names
 with open(names_path, 'r') as f:
