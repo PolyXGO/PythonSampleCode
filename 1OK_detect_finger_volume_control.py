@@ -1,4 +1,4 @@
-#Setup `pip install comtypes`, `pip install pycaw`
+# Setup `pip install comtypes`, `pip install pycaw`
 # Sử dụng khoảng cách ngón trỏ và ngón cái để tăng giảm âm lượng âm thanh hệ thống. Trên Windows mọi người build sẽ cần bổ sung thư viện python sẽ yêu cầu trên thông báo lỗi nhé!
 
 import cv2
