@@ -5,10 +5,10 @@ Phần tính năng từng file code ghi chú ở đầu mỗi tập tin.
 
 ## Thư viện UI Python
 
-Tkinter với ttkthemes: Đơn giản và tích hợp sẵn trong Python, dễ sử dụng.
-PyQt với QDarkStyle: Mạnh mẽ, linh hoạt, nhiều tính năng nâng cao.
-Kivy: Phát triển ứng dụng đa nền tảng, hiện đại.
-CustomTkinter: Hiện đại hơn so với Tkinter thông thường.
+Tkinter với ttkthemes: Đơn giản và tích hợp sẵn trong Python, dễ sử dụng.<br/>
+PyQt với QDarkStyle: Mạnh mẽ, linh hoạt, nhiều tính năng nâng cao.<br/>
+Kivy: Phát triển ứng dụng đa nền tảng, hiện đại.<br/>
+CustomTkinter: Hiện đại hơn so với Tkinter thông thường.<br/>
 
 ## WinOS
 

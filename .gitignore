@@ -6,7 +6,7 @@
 
 # !ignore file name `1OK...`
 !/*1OK*
-
+!README.md
 .DS_Store
 /.vs
 /build
