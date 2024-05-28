@@ -5,10 +5,10 @@ Phần tính năng từng file code ghi chú ở đầu mỗi tập tin.
 
 ## Thư viện UI Python
 
-Tkinter với ttkthemes: Đơn giản và tích hợp sẵn trong Python, dễ sử dụng.<br/>
-PyQt với QDarkStyle: Mạnh mẽ, linh hoạt, nhiều tính năng nâng cao.<br/>
-Kivy: Phát triển ứng dụng đa nền tảng, hiện đại.<br/>
-CustomTkinter: Hiện đại hơn so với Tkinter thông thường.<br/>
+**Tkinter** với **ttkthemes**: Đơn giản và tích hợp sẵn trong Python, dễ sử dụng.<br/>
+**PyQt** với **QDarkStyle**: Mạnh mẽ, linh hoạt, nhiều tính năng nâng cao.<br/>
+**Kivy**: Phát triển ứng dụng đa nền tảng, hiện đại.<br/>
+**CustomTkinter**: Hiện đại hơn so với Tkinter thông thường.<br/>
 
 ## WinOS
 
@@ -17,14 +17,12 @@ CustomTkinter: Hiện đại hơn so với Tkinter thông thường.<br/>
 
 Kiểm tra phiên bản pip version: `pip --version`
 
-3. Càid đặt gói cần thiết:
+3. Cú pháp đặt gói cần thiết (nếu cần):
 `pip install <tên_gói>` hoặc `pip3 install <tên_gói>`
 
-4. Chạy các ứng dụng Build bình thường.
+4. Chạy các ứng dụng Build bình thường như code ứng dụng Windows form: dùng `Ctrl + F5`
 
 ## MacOS
-
-Build Python dùng lệnh Terminal tại thư mục dự án: `python3 file_name.py` hoặc `python file_name.py` nếu dùng version cũ hơn.
 
 1. Kiểm tra cài đặt Python
 `python3 --version`
@@ -49,6 +47,8 @@ Build Python dùng lệnh Terminal tại thư mục dự án: `python3 file_name
 7. Tiến hành cài các gói cần thiết.
 Ví dụ: `pip3 install ttkthemes pyqt5 qdarkstyle kivy customtkinter`
 `pip3 install pywin32`
+
+8. Build Python dùng lệnh Terminal tại thư mục dự án: `python3 file_name.py` hoặc `python file_name.py` nếu dùng version cũ hơn.
 
 ## NOTE
 
